@@ -21,7 +21,8 @@ def main():
                 running = False
         
 
-        
+        # Update player input/logic
+        player.update(dt)
         # Clear screen with black 
         screen.fill((0, 0, 0))
         # draw player
