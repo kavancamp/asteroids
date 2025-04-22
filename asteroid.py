@@ -4,7 +4,7 @@ from constants import PLAYER_RADIUS
 
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):  # <-- Accept x and y as arguments
-        super().__init__(x, y, PLAYER_RADIUS)
+        super().__init__(x, y, radius)
         self.x = x
         self.y = y
         self.radius = radius
