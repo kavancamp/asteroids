@@ -12,7 +12,11 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
-    player = Player(x=SCREEN_WIDTH / 2, y=SCREEN_HEIGHT / 2)
+    updatable = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+    Player.containers = updatable, drawables #tells player to add itself to groups when initialized
+
+    player = Player(x=SCREEN_WIDTH / 2, y=SCREEN_HEIGHT / 2) #instantiate player
 
     running = True
     while running:
@@ -22,11 +26,14 @@ def main():
         
 
         # Update player input/logic
-        player.update(dt)
-        # Clear screen with black 
+        #player.update(dt)
+        updatable.update(dt) #update all updateable objects
+
+        # Clear screen/black
         screen.fill((0, 0, 0))
-        # draw player
-        player.draw(screen)
+        # draw drawable objects
+        for drawable in drawables:
+            drawable.draw(screen)
         # update display
         pygame.display.flip()
 
