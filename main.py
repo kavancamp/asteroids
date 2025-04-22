@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 from player import Player
+from asteroid import Asteroid
 
 def main():
     pygame.init()
@@ -14,7 +15,10 @@ def main():
 
     updatable = pygame.sprite.Group()
     drawables = pygame.sprite.Group()
-    Player.containers = updatable, drawables #tells player to add itself to groups when initialized
+    asteroids = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawables) #tells player to add itself to groups when initialized
+    Asteroid.containers = (asteroids, updatable, drawables) #every instance of asteroid added automatically
 
     player = Player(x=SCREEN_WIDTH / 2, y=SCREEN_HEIGHT / 2) #instantiate player
 
