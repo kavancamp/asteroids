@@ -17,23 +17,29 @@ class Asteroid(CircleShape):
         self.position += (self.velocity * dt)
 
     def split(self):
-        if self.radius <= ASTEROID_MIN_RADIUS:
-            self.kill()
-            if self.explode_sound:
-                self.explode_sound.play()
-            return
-        for _ in range(30):  # spawn 20 particles
+        # Particle burst
+        for _ in range(10 if self.radius <= ASTEROID_MIN_RADIUS else 30):
             self.particle_group.add(Particle(self.position))
 
+        # Small asteroids die not split apart
+        if self.radius <= ASTEROID_MIN_RADIUS:
+            self.kill()
+            return
+
+        # Play sound if available
+        if self.explode_sound:
+            self.explode_sound.play()
+
+        # Calculate new velocities and size
         random_angle = random.uniform(20, 50)
         velocity1 = self.velocity.rotate(random_angle) * 1.2
         velocity2 = self.velocity.rotate(-random_angle) * 1.2
         new_radius = self.radius - ASTEROID_MIN_RADIUS
-        
 
-        # Spawn two new asteroids with new velocities and radius
-        Asteroid(self.position.x, self.position.y, new_radius).velocity = velocity1
-        Asteroid(self.position.x, self.position.y, new_radius).velocity = velocity2
-       
-        # Remove the original asteroid
+        # instantiate and assign velocity
+        a1 = Asteroid(self.position.x, self.position.y, new_radius)
+        a1.velocity = velocity1
+        a2 = Asteroid(self.position.x, self.position.y, new_radius)
+        a2.velocity = velocity2
+
         self.kill()
