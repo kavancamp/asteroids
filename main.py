@@ -1,4 +1,4 @@
-import pygame
+import pygame 
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -13,7 +13,7 @@ def main():
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
-
+    font = pygame.font.Font(None, 36)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
@@ -34,7 +34,8 @@ def main():
     # Instantiate game objects
     player = Player(x=SCREEN_WIDTH / 2, y=SCREEN_HEIGHT / 2) #instantiate player
     
-    
+    # Initialize score
+    score = 0
 
     running = True
 
@@ -59,11 +60,14 @@ def main():
                 if shot.collides_with(asteroid):
                     shot.kill()
                     asteroid.split()
-                break
+                    score += 1
+                    break
         
-
+        score_text = font.render(f'Score: {score}', True, (255, 255, 255))
         # Clear screen/black
         screen.fill((0, 0, 0))
+
+        screen.blit(score_text, (10, 10))
         # draw drawable objects
         for drawable in drawables:
             drawable.draw(screen)
