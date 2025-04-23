@@ -21,7 +21,7 @@ class Asteroid(CircleShape):
         for _ in range(10 if self.radius <= ASTEROID_MIN_RADIUS else 30):
             self.particle_group.add(Particle(self.position))
 
-        # Small asteroids die not split apart
+        # Small asteroids die
         if self.radius <= ASTEROID_MIN_RADIUS:
             self.kill()
             return
