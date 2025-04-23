@@ -47,6 +47,11 @@ def main():
                 print("Game Over!")
                 pygame.quit()
                 exit()
+        for asteroid in asteroids:
+            for bullet in shots:
+                if bullet.collides_with(asteroid):
+                    bullet.kill()
+                    asteroid.kill()
 
         # Clear screen/black
         screen.fill((0, 0, 0))
