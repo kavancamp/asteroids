@@ -28,9 +28,8 @@ pip install -r requirements.txt
 python main.py
 
 📁 Project Structure
-bash
-Copy
-Edit
+<pre> 
+```
 asteroids/
 ├── assets/             # Game assets like images and sounds
 ├── src/                # Source code files
@@ -40,3 +39,4 @@ asteroids/
 │   └── ...             # Other modules
 ├── requirements.txt    # Python dependencies
 └── README.md           # Project documentation
+ ```</pre>
