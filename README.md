@@ -39,3 +39,7 @@ asteroids/
 ├── requirements.txt    # Python dependencies
 └── README.md           # Project documentation
 </pre>
+
+#### 🛠 Requirements
+Python 3.6+
+Pygame 2.6.1
